@@ -110,9 +110,169 @@ func (m *SumResponse) GetRes() int32 {
 	return 0
 }
 
+type PrimeNumberDecompositionRequest struct {
+	Number               int32    `protobuf:"varint,1,opt,name=number,proto3" json:"number,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *PrimeNumberDecompositionRequest) Reset()         { *m = PrimeNumberDecompositionRequest{} }
+func (m *PrimeNumberDecompositionRequest) String() string { return proto.CompactTextString(m) }
+func (*PrimeNumberDecompositionRequest) ProtoMessage()    {}
+func (*PrimeNumberDecompositionRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_7f42938f8c8365cf, []int{2}
+}
+
+func (m *PrimeNumberDecompositionRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_PrimeNumberDecompositionRequest.Unmarshal(m, b)
+}
+func (m *PrimeNumberDecompositionRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_PrimeNumberDecompositionRequest.Marshal(b, m, deterministic)
+}
+func (m *PrimeNumberDecompositionRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_PrimeNumberDecompositionRequest.Merge(m, src)
+}
+func (m *PrimeNumberDecompositionRequest) XXX_Size() int {
+	return xxx_messageInfo_PrimeNumberDecompositionRequest.Size(m)
+}
+func (m *PrimeNumberDecompositionRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_PrimeNumberDecompositionRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_PrimeNumberDecompositionRequest proto.InternalMessageInfo
+
+func (m *PrimeNumberDecompositionRequest) GetNumber() int32 {
+	if m != nil {
+		return m.Number
+	}
+	return 0
+}
+
+type PrimeNumberDecompositionResponse struct {
+	Res                  int32    `protobuf:"varint,1,opt,name=res,proto3" json:"res,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *PrimeNumberDecompositionResponse) Reset()         { *m = PrimeNumberDecompositionResponse{} }
+func (m *PrimeNumberDecompositionResponse) String() string { return proto.CompactTextString(m) }
+func (*PrimeNumberDecompositionResponse) ProtoMessage()    {}
+func (*PrimeNumberDecompositionResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_7f42938f8c8365cf, []int{3}
+}
+
+func (m *PrimeNumberDecompositionResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_PrimeNumberDecompositionResponse.Unmarshal(m, b)
+}
+func (m *PrimeNumberDecompositionResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_PrimeNumberDecompositionResponse.Marshal(b, m, deterministic)
+}
+func (m *PrimeNumberDecompositionResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_PrimeNumberDecompositionResponse.Merge(m, src)
+}
+func (m *PrimeNumberDecompositionResponse) XXX_Size() int {
+	return xxx_messageInfo_PrimeNumberDecompositionResponse.Size(m)
+}
+func (m *PrimeNumberDecompositionResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_PrimeNumberDecompositionResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_PrimeNumberDecompositionResponse proto.InternalMessageInfo
+
+func (m *PrimeNumberDecompositionResponse) GetRes() int32 {
+	if m != nil {
+		return m.Res
+	}
+	return 0
+}
+
+type AverageRequest struct {
+	Number               int32    `protobuf:"varint,1,opt,name=number,proto3" json:"number,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *AverageRequest) Reset()         { *m = AverageRequest{} }
+func (m *AverageRequest) String() string { return proto.CompactTextString(m) }
+func (*AverageRequest) ProtoMessage()    {}
+func (*AverageRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_7f42938f8c8365cf, []int{4}
+}
+
+func (m *AverageRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_AverageRequest.Unmarshal(m, b)
+}
+func (m *AverageRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_AverageRequest.Marshal(b, m, deterministic)
+}
+func (m *AverageRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_AverageRequest.Merge(m, src)
+}
+func (m *AverageRequest) XXX_Size() int {
+	return xxx_messageInfo_AverageRequest.Size(m)
+}
+func (m *AverageRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_AverageRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_AverageRequest proto.InternalMessageInfo
+
+func (m *AverageRequest) GetNumber() int32 {
+	if m != nil {
+		return m.Number
+	}
+	return 0
+}
+
+type AverageResponse struct {
+	Res                  float32  `protobuf:"fixed32,1,opt,name=res,proto3" json:"res,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *AverageResponse) Reset()         { *m = AverageResponse{} }
+func (m *AverageResponse) String() string { return proto.CompactTextString(m) }
+func (*AverageResponse) ProtoMessage()    {}
+func (*AverageResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_7f42938f8c8365cf, []int{5}
+}
+
+func (m *AverageResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_AverageResponse.Unmarshal(m, b)
+}
+func (m *AverageResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_AverageResponse.Marshal(b, m, deterministic)
+}
+func (m *AverageResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_AverageResponse.Merge(m, src)
+}
+func (m *AverageResponse) XXX_Size() int {
+	return xxx_messageInfo_AverageResponse.Size(m)
+}
+func (m *AverageResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_AverageResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_AverageResponse proto.InternalMessageInfo
+
+func (m *AverageResponse) GetRes() float32 {
+	if m != nil {
+		return m.Res
+	}
+	return 0
+}
+
 func init() {
 	proto.RegisterType((*SumRequest)(nil), "calculator.SumRequest")
 	proto.RegisterType((*SumResponse)(nil), "calculator.SumResponse")
+	proto.RegisterType((*PrimeNumberDecompositionRequest)(nil), "calculator.PrimeNumberDecompositionRequest")
+	proto.RegisterType((*PrimeNumberDecompositionResponse)(nil), "calculator.PrimeNumberDecompositionResponse")
+	proto.RegisterType((*AverageRequest)(nil), "calculator.AverageRequest")
+	proto.RegisterType((*AverageResponse)(nil), "calculator.AverageResponse")
 }
 
 func init() {
@@ -120,17 +280,24 @@ func init() {
 }
 
 var fileDescriptor_7f42938f8c8365cf = []byte{
-	// 160 bytes of a gzipped FileDescriptorProto
+	// 272 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0xd2, 0x48, 0x4e, 0xcc, 0x49,
 	0x2e, 0xcd, 0x49, 0x2c, 0xc9, 0x2f, 0xd2, 0x47, 0x30, 0x0b, 0x92, 0x90, 0x38, 0x7a, 0x05, 0x45,
 	0xf9, 0x25, 0xf9, 0x42, 0x5c, 0x08, 0x11, 0x25, 0x07, 0x2e, 0xae, 0xe0, 0xd2, 0xdc, 0xa0, 0xd4,
 	0xc2, 0xd2, 0xd4, 0xe2, 0x12, 0x21, 0x09, 0x2e, 0xf6, 0xbc, 0xd2, 0xdc, 0xa4, 0xd4, 0x22, 0x47,
 	0x09, 0x46, 0x05, 0x46, 0x0d, 0xd6, 0x20, 0x18, 0x17, 0x21, 0xe3, 0x24, 0xc1, 0x84, 0x2c, 0xe3,
 	0xa4, 0x24, 0xcf, 0xc5, 0x0d, 0x36, 0xa1, 0xb8, 0x20, 0x3f, 0xaf, 0x38, 0x55, 0x48, 0x80, 0x8b,
-	0xb9, 0x28, 0xb5, 0x18, 0xaa, 0x1d, 0xc4, 0x34, 0x72, 0xe5, 0xe2, 0x74, 0x86, 0x5a, 0x98, 0x2a,
-	0x64, 0xc1, 0xc5, 0x1c, 0x5c, 0x9a, 0x2b, 0x24, 0xa6, 0x87, 0xe4, 0x2a, 0x84, 0x03, 0xa4, 0xc4,
-	0x31, 0xc4, 0x21, 0xc6, 0x2a, 0x31, 0x38, 0xf1, 0x45, 0xf1, 0x20, 0x7b, 0x2b, 0x89, 0x0d, 0xec,
-	0x19, 0x63, 0x40, 0x00, 0x00, 0x00, 0xff, 0xff, 0x28, 0x6d, 0xfc, 0xcd, 0xf8, 0x00, 0x00, 0x00,
+	0xb9, 0x28, 0xb5, 0x18, 0xaa, 0x1d, 0xc4, 0x54, 0xb2, 0xe4, 0x92, 0x0f, 0x28, 0xca, 0xcc, 0x4d,
+	0xf5, 0x03, 0x6b, 0x70, 0x49, 0x4d, 0xce, 0xcf, 0x2d, 0xc8, 0x2f, 0xce, 0x2c, 0xc9, 0xcc, 0xcf,
+	0x83, 0xd9, 0x2b, 0xc6, 0xc5, 0x06, 0x31, 0x0e, 0xaa, 0x0f, 0xca, 0x53, 0x32, 0xe1, 0x52, 0xc0,
+	0xad, 0x15, 0xa7, 0x85, 0x1a, 0x5c, 0x7c, 0x8e, 0x65, 0xa9, 0x45, 0x89, 0xe9, 0xa9, 0x84, 0xcc,
+	0x57, 0xe6, 0xe2, 0x87, 0xab, 0xc4, 0x34, 0x8e, 0x09, 0x6c, 0x9c, 0x51, 0x07, 0x13, 0x17, 0xa7,
+	0x33, 0x34, 0xc4, 0x52, 0x85, 0x2c, 0xb8, 0x98, 0x83, 0x4b, 0x73, 0x85, 0xc4, 0xf4, 0x90, 0x82,
+	0x15, 0x11, 0x82, 0x52, 0xe2, 0x18, 0xe2, 0x10, 0x73, 0x95, 0x18, 0x84, 0x2a, 0xb9, 0x24, 0x70,
+	0x79, 0x46, 0x48, 0x1b, 0x59, 0x1b, 0x81, 0xd0, 0x92, 0xd2, 0x21, 0x4e, 0x31, 0xcc, 0x62, 0x03,
+	0x46, 0x21, 0x37, 0x2e, 0x76, 0xa8, 0x3f, 0x85, 0xa4, 0x90, 0x35, 0xa3, 0x06, 0x93, 0x94, 0x34,
+	0x56, 0x39, 0x98, 0x39, 0x1a, 0x8c, 0x4e, 0x7c, 0x51, 0x3c, 0xc8, 0x49, 0x2b, 0x89, 0x0d, 0x9c,
+	0xa0, 0x8c, 0x01, 0x01, 0x00, 0x00, 0xff, 0xff, 0x0c, 0x8a, 0x3d, 0xe4, 0x7c, 0x02, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -146,6 +313,8 @@ const _ = grpc.SupportPackageIsVersion4
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type CalculateClient interface {
 	Sum(ctx context.Context, in *SumRequest, opts ...grpc.CallOption) (*SumResponse, error)
+	PrimeNumberDecomposition(ctx context.Context, in *PrimeNumberDecompositionRequest, opts ...grpc.CallOption) (Calculate_PrimeNumberDecompositionClient, error)
+	Average(ctx context.Context, opts ...grpc.CallOption) (Calculate_AverageClient, error)
 }
 
 type calculateClient struct {
@@ -165,9 +334,77 @@ func (c *calculateClient) Sum(ctx context.Context, in *SumRequest, opts ...grpc.
 	return out, nil
 }
 
+func (c *calculateClient) PrimeNumberDecomposition(ctx context.Context, in *PrimeNumberDecompositionRequest, opts ...grpc.CallOption) (Calculate_PrimeNumberDecompositionClient, error) {
+	stream, err := c.cc.NewStream(ctx, &_Calculate_serviceDesc.Streams[0], "/calculator.Calculate/PrimeNumberDecomposition", opts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &calculatePrimeNumberDecompositionClient{stream}
+	if err := x.ClientStream.SendMsg(in); err != nil {
+		return nil, err
+	}
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	return x, nil
+}
+
+type Calculate_PrimeNumberDecompositionClient interface {
+	Recv() (*PrimeNumberDecompositionResponse, error)
+	grpc.ClientStream
+}
+
+type calculatePrimeNumberDecompositionClient struct {
+	grpc.ClientStream
+}
+
+func (x *calculatePrimeNumberDecompositionClient) Recv() (*PrimeNumberDecompositionResponse, error) {
+	m := new(PrimeNumberDecompositionResponse)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
+func (c *calculateClient) Average(ctx context.Context, opts ...grpc.CallOption) (Calculate_AverageClient, error) {
+	stream, err := c.cc.NewStream(ctx, &_Calculate_serviceDesc.Streams[1], "/calculator.Calculate/Average", opts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &calculateAverageClient{stream}
+	return x, nil
+}
+
+type Calculate_AverageClient interface {
+	Send(*AverageRequest) error
+	CloseAndRecv() (*AverageResponse, error)
+	grpc.ClientStream
+}
+
+type calculateAverageClient struct {
+	grpc.ClientStream
+}
+
+func (x *calculateAverageClient) Send(m *AverageRequest) error {
+	return x.ClientStream.SendMsg(m)
+}
+
+func (x *calculateAverageClient) CloseAndRecv() (*AverageResponse, error) {
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	m := new(AverageResponse)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
 // CalculateServer is the server API for Calculate service.
 type CalculateServer interface {
 	Sum(context.Context, *SumRequest) (*SumResponse, error)
+	PrimeNumberDecomposition(*PrimeNumberDecompositionRequest, Calculate_PrimeNumberDecompositionServer) error
+	Average(Calculate_AverageServer) error
 }
 
 // UnimplementedCalculateServer can be embedded to have forward compatible implementations.
@@ -176,6 +413,12 @@ type UnimplementedCalculateServer struct {
 
 func (*UnimplementedCalculateServer) Sum(ctx context.Context, req *SumRequest) (*SumResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Sum not implemented")
+}
+func (*UnimplementedCalculateServer) PrimeNumberDecomposition(req *PrimeNumberDecompositionRequest, srv Calculate_PrimeNumberDecompositionServer) error {
+	return status.Errorf(codes.Unimplemented, "method PrimeNumberDecomposition not implemented")
+}
+func (*UnimplementedCalculateServer) Average(srv Calculate_AverageServer) error {
+	return status.Errorf(codes.Unimplemented, "method Average not implemented")
 }
 
 func RegisterCalculateServer(s *grpc.Server, srv CalculateServer) {
@@ -200,6 +443,53 @@ func _Calculate_Sum_Handler(srv interface{}, ctx context.Context, dec func(inter
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Calculate_PrimeNumberDecomposition_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(PrimeNumberDecompositionRequest)
+	if err := stream.RecvMsg(m); err != nil {
+		return err
+	}
+	return srv.(CalculateServer).PrimeNumberDecomposition(m, &calculatePrimeNumberDecompositionServer{stream})
+}
+
+type Calculate_PrimeNumberDecompositionServer interface {
+	Send(*PrimeNumberDecompositionResponse) error
+	grpc.ServerStream
+}
+
+type calculatePrimeNumberDecompositionServer struct {
+	grpc.ServerStream
+}
+
+func (x *calculatePrimeNumberDecompositionServer) Send(m *PrimeNumberDecompositionResponse) error {
+	return x.ServerStream.SendMsg(m)
+}
+
+func _Calculate_Average_Handler(srv interface{}, stream grpc.ServerStream) error {
+	return srv.(CalculateServer).Average(&calculateAverageServer{stream})
+}
+
+type Calculate_AverageServer interface {
+	SendAndClose(*AverageResponse) error
+	Recv() (*AverageRequest, error)
+	grpc.ServerStream
+}
+
+type calculateAverageServer struct {
+	grpc.ServerStream
+}
+
+func (x *calculateAverageServer) SendAndClose(m *AverageResponse) error {
+	return x.ServerStream.SendMsg(m)
+}
+
+func (x *calculateAverageServer) Recv() (*AverageRequest, error) {
+	m := new(AverageRequest)
+	if err := x.ServerStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
 var _Calculate_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "calculator.Calculate",
 	HandlerType: (*CalculateServer)(nil),
@@ -209,6 +499,17 @@ var _Calculate_serviceDesc = grpc.ServiceDesc{
 			Handler:    _Calculate_Sum_Handler,
 		},
 	},
-	Streams:  []grpc.StreamDesc{},
+	Streams: []grpc.StreamDesc{
+		{
+			StreamName:    "PrimeNumberDecomposition",
+			Handler:       _Calculate_PrimeNumberDecomposition_Handler,
+			ServerStreams: true,
+		},
+		{
+			StreamName:    "Average",
+			Handler:       _Calculate_Average_Handler,
+			ClientStreams: true,
+		},
+	},
 	Metadata: "calculator/calculatorpb/calculator.proto",
 }

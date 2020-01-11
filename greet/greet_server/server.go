@@ -3,8 +3,11 @@ package main
 import (
 	"context"
 	"fmt"
+	"io"
 	"log"
 	"net"
+	"strconv"
+	"time"
 
 	"google.golang.org/grpc"
 
@@ -21,6 +24,40 @@ func (s *server) Greet(ctx context.Context, request *greetpb.GreetRequest) (*gre
 		Result: result,
 	}
 	return res, nil
+}
+
+func (s *server) GreetManyTimes(request *greetpb.GreetManyTimesRequest, stream greetpb.GreetService_GreetManyTimesServer) error {
+	firstName := request.GetGreeting().GetFirstName()
+	for i := 0; i < 10; i++ {
+		result := "Hello " + firstName + " number " + strconv.Itoa(i)
+		res := &greetpb.GreetManyTimesResponse{
+			Result: result,
+		}
+		if err := stream.Send(res); err != nil {
+			return err
+		}
+		time.Sleep(1000 * time.Millisecond)
+	}
+	return nil
+}
+
+func (s *server) LongGreet(stream greetpb.GreetService_LongGreetServer) error {
+	result := ""
+	for {
+		req, err := stream.Recv()
+		if err == io.EOF {
+			return stream.SendAndClose(&greetpb.LongGreetResponse{
+				Result: result,
+			})
+		}
+
+		if err != nil {
+			log.Fatalf("Error while streaming: %v", err)
+		}
+
+		firstName := req.GetGreeting().GetFirstName()
+		result += "Hello " + firstName + "! "
+	}
 }
 
 func main() {

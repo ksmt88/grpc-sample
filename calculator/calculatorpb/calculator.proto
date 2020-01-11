@@ -12,7 +12,27 @@ message SumResponse {
     int32 res = 1;
 }
 
+message PrimeNumberDecompositionRequest {
+    int32 number = 1;
+}
+
+message PrimeNumberDecompositionResponse {
+    int32 res = 1;
+}
+
+message AverageRequest {
+    int32 number = 1;
+}
+
+message AverageResponse {
+    float res = 1;
+}
+
 service Calculate {
-    rpc Sum (SumRequest) returns (SumResponse) {
-    };
+    rpc Sum (SumRequest) returns (SumResponse) {};
+
+    rpc PrimeNumberDecomposition (PrimeNumberDecompositionRequest) returns (stream PrimeNumberDecompositionResponse) {};
+
+    rpc Average (stream AverageRequest) returns (AverageResponse) {};
+
 }

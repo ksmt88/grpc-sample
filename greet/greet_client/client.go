@@ -5,7 +5,9 @@ import (
 	"fmt"
 	"github.com/ksmt88/grpc-go-course-master/greet/greetpb"
 	"google.golang.org/grpc"
+	"io"
 	"log"
+	"time"
 )
 
 func main() {
@@ -21,7 +23,9 @@ func main() {
 
 	//fmt.Printf("Created client: %f", c)
 
-	doUnary(c)
+	//doUnary(c)
+	//doServerStreaming(c)
+	doClientStreaming(c)
 }
 
 func doUnary(c greetpb.GreetServiceClient) {
@@ -37,4 +41,79 @@ func doUnary(c greetpb.GreetServiceClient) {
 		log.Fatalf("Error while calling Greet RPC: %v", err)
 	}
 	log.Printf("Response from Greet: %v", res)
+}
+
+func doServerStreaming(c greetpb.GreetServiceClient) {
+	fmt.Println("Starting")
+
+	req := &greetpb.GreetManyTimesRequest{
+		Greeting: &greetpb.Greeting{
+			FirstName: "Test",
+			LastName:  "Taro",
+		},
+	}
+	resStream, err := c.GreetManyTimes(context.Background(), req)
+	if err != nil {
+		log.Fatalf("error: %v", err)
+	}
+	for {
+		msg, err := resStream.Recv()
+		if err == io.EOF {
+			break
+		}
+		if err != nil {
+			log.Fatalf("error while reading stream: %v", err)
+		}
+		log.Printf("Response from GreetManyTimes: %v", msg)
+	}
+
+}
+
+func doClientStreaming(c greetpb.GreetServiceClient) {
+	fmt.Println("Starting")
+
+	requests := []*greetpb.LongGreetRequest{
+		&greetpb.LongGreetRequest{
+			Greeting: &greetpb.Greeting{
+				FirstName: "test1",
+				LastName:  "test1",
+			},
+		},
+		&greetpb.LongGreetRequest{
+			Greeting: &greetpb.Greeting{
+				FirstName: "test2",
+				LastName:  "test2",
+			},
+		},
+		&greetpb.LongGreetRequest{
+			Greeting: &greetpb.Greeting{
+				FirstName: "test3",
+				LastName:  "test3",
+			},
+		},
+		&greetpb.LongGreetRequest{
+			Greeting: &greetpb.Greeting{
+				FirstName: "test4",
+				LastName:  "test4",
+			},
+		},
+	}
+
+	stream, err := c.LongGreet(context.Background())
+	if err != nil {
+		log.Fatalf("error while calling LongGreet: %v", err)
+	}
+
+	for _, request := range requests {
+		fmt.Printf("Send request: %v", request)
+		stream.Send(request)
+		time.Sleep(1000 * time.Millisecond)
+	}
+
+	res, err := stream.CloseAndRecv()
+	if err != nil {
+		log.Fatalf("error while receiving LongGreet: %v", err)
+	}
+
+	fmt.Println("response: " + res.Result)
 }

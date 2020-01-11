@@ -4,8 +4,10 @@ import (
 	"context"
 	"github.com/ksmt88/grpc-go-course-master/calculator/calculatorpb"
 	"google.golang.org/grpc"
+	"io"
 	"log"
 	"net"
+	"time"
 )
 
 type server struct {
@@ -19,6 +21,50 @@ func (s *server) Sum(ctx context.Context, request *calculatorpb.SumRequest) (*ca
 		Res: result,
 	}
 	return res, nil
+}
+
+func (s *server) PrimeNumberDecomposition(request *calculatorpb.PrimeNumberDecompositionRequest, stream calculatorpb.Calculate_PrimeNumberDecompositionServer) error {
+	number := request.GetNumber()
+	var divisor int32 = 2
+	for {
+		if number%divisor == int32(0) {
+			res := &calculatorpb.PrimeNumberDecompositionResponse{
+				Res: divisor,
+			}
+			number = number / divisor
+			if err := stream.Send(res); err != nil {
+				return err
+			}
+			time.Sleep(1000 * time.Millisecond)
+		} else {
+			divisor = divisor + 1
+		}
+
+		if divisor > number {
+			break
+		}
+	}
+	return nil
+}
+
+func (s *server) Average(stream calculatorpb.Calculate_AverageServer) error {
+	result := float32(0)
+	count := float32(0)
+	for {
+		req, err := stream.Recv()
+		if err == io.EOF {
+			return stream.SendAndClose(&calculatorpb.AverageResponse{
+				Res: result / count,
+			})
+		}
+
+		if err != nil {
+			log.Fatalf("Error while streaming: %v", err)
+		}
+
+		result += float32(req.GetNumber())
+		count++
+	}
 }
 
 func main() {
