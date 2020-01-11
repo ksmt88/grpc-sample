@@ -23,7 +23,8 @@ func main() {
 
 	//doUnary(c)
 	//doServerStreaming(c)
-	doClientStreaming(c)
+	//doClientStreaming(c)
+	doBiDiStreaming(c)
 }
 
 func doUnary(c calculatorpb.CalculateClient) {
@@ -64,7 +65,7 @@ func doServerStreaming(c calculatorpb.CalculateClient) {
 func doClientStreaming(c calculatorpb.CalculateClient) {
 	fmt.Println("Starting")
 
-	numbers := []int32{6,9,7,0}
+	numbers := []int32{6, 9, 7, 0}
 
 	stream, err := c.Average(context.Background())
 	if err != nil {
@@ -85,4 +86,44 @@ func doClientStreaming(c calculatorpb.CalculateClient) {
 	}
 
 	fmt.Printf("result: %.1f\n", res.GetRes())
+}
+
+func doBiDiStreaming(c calculatorpb.CalculateClient) {
+	fmt.Println("Starting")
+
+	numbers := []int32{1,5,3,6,2,20}
+
+	stream, err := c.FindMaximum(context.Background())
+	if err != nil {
+		log.Fatalf("error while calling FindMaximum: %v", err)
+	}
+
+	go func() {
+		for _, number := range numbers {
+			fmt.Printf("Sending message: %v\n", number)
+			stream.Send(&calculatorpb.FindMaximumRequest{
+				Number: number,
+			})
+			time.Sleep(1000 * time.Millisecond)
+		}
+		stream.CloseSend()
+	}()
+
+	waitc := make(chan struct{})
+	go func() {
+		for {
+			res, err := stream.Recv()
+			if err == io.EOF {
+				break
+			}
+			if err != nil {
+				log.Fatalf("Error while receiving: %v", err)
+				break
+			}
+			fmt.Printf("Received: %v\n", res)
+		}
+		close(waitc)
+	}()
+
+	<-waitc
 }

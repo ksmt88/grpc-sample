@@ -10,8 +10,7 @@ import (
 	"time"
 )
 
-type server struct {
-}
+type server struct{}
 
 func (s *server) Sum(ctx context.Context, request *calculatorpb.SumRequest) (*calculatorpb.SumResponse, error) {
 	numberA := request.GetNumberA()
@@ -64,6 +63,31 @@ func (s *server) Average(stream calculatorpb.Calculate_AverageServer) error {
 
 		result += float32(req.GetNumber())
 		count++
+	}
+}
+
+func (s *server) FindMaximum(stream calculatorpb.Calculate_FindMaximumServer) error {
+	current := int32(0)
+	for {
+		req, err := stream.Recv()
+		if err == io.EOF {
+			return nil
+		}
+		if err != nil {
+			log.Fatalf("Error while streaming: %v", err)
+		}
+
+		if current < req.GetNumber() {
+			current = req.GetNumber()
+
+			sendErr := stream.Send(&calculatorpb.FindMaximumResponse{
+				Res: current,
+			})
+			if sendErr != nil {
+				log.Fatalf("Error sending data: %v", err)
+				return err
+			}
+		}
 	}
 }
 
