@@ -2,10 +2,14 @@ package main
 
 import (
 	"context"
+	"fmt"
 	"github.com/ksmt88/grpc-go-course-master/calculator/calculatorpb"
 	"google.golang.org/grpc"
+	"google.golang.org/grpc/codes"
+	"google.golang.org/grpc/status"
 	"io"
 	"log"
+	"math"
 	"net"
 	"time"
 )
@@ -89,6 +93,16 @@ func (s *server) FindMaximum(stream calculatorpb.Calculate_FindMaximumServer) er
 			}
 		}
 	}
+}
+
+func (s *server) SquareRoot(ctx context.Context, request *calculatorpb.SquareRootRequest) (*calculatorpb.SquareRootResponse, error) {
+	number := request.GetNumber()
+	if number < 0 {
+		return nil, status.Errorf(codes.InvalidArgument, fmt.Sprintf("Received a negabice number: %v", number))
+	}
+	return &calculatorpb.SquareRootResponse{
+		NumberRoot: math.Sqrt(float64(number)),
+	}, nil
 }
 
 func main() {
