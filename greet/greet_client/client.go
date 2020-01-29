@@ -21,7 +21,7 @@ func main() {
 
 	c := greetpb.NewGreetServiceClient(cc)
 
-	//fmt.Printf("Created client: %f", c)
+	//fmt.Printf("Created blog_client: %f", c)
 
 	//doUnary(c)
 	//doServerStreaming(c)
